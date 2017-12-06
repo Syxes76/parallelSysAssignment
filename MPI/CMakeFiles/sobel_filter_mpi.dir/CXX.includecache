@@ -9,8 +9,6 @@
 /home/gabriel/Desktop/parallelSysAssignment/MPI/sobel_filter_mpi.cpp
 iostream
 -
-vector
--
 mpi.h
 -
 string

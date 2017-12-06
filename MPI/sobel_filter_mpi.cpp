@@ -1,5 +1,4 @@
 #include<iostream>
-#include<vector>
 #include<mpi.h>
 #include<string>
 #include<cmath>

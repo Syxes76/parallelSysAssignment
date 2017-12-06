@@ -5,7 +5,6 @@ find_package(MPI REQUIRED)
 include_directories( ${OpenCV_INCLUDE_DIRS} )
 include_directories(${MPI_INCLUDE_PATH})
 add_executable( sobel_filter_mpi sobel_filter_mpi.cpp )
-set (CMAKE_CXX_FLAGS " -std=c++14")
 target_link_libraries( sobel_filter_mpi ${OpenCV_LIBS} ${MPI_LIBRARIES} )
 if(MPI_COMPILE_FLAGS)
   set_target_properties(sobel_filter_mpi PROPERTIES
