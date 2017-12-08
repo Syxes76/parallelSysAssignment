@@ -1,1 +1,0 @@
-/usr/bin/c++  -std=c++14   CMakeFiles/workspace_query.dir/workspace_query.cpp.o  -o /home/gabriel/Desktop/parallelSysAssignment/OpenCL/bin/workspace_query /usr/lib/x86_64-linux-gnu/libOpenCL.so 

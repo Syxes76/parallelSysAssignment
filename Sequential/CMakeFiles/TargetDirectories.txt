@@ -1,3 +1,0 @@
-/home/gabriel/Desktop/parallelSysAssignment/Sequential/CMakeFiles/rebuild_cache.dir
-/home/gabriel/Desktop/parallelSysAssignment/Sequential/CMakeFiles/edit_cache.dir
-/home/gabriel/Desktop/parallelSysAssignment/Sequential/CMakeFiles/sobel_filter.dir

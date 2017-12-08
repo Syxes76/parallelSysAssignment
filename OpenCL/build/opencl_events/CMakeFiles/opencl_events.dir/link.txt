@@ -1,1 +1,0 @@
-/usr/bin/c++  -std=c++14   CMakeFiles/opencl_events.dir/opencl_events.cpp.o  -o /home/gabriel/Desktop/parallelSysAssignment/OpenCL/bin/opencl_events /usr/lib/x86_64-linux-gnu/libOpenCL.so 

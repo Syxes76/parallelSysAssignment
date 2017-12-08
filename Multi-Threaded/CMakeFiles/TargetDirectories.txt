@@ -1,3 +1,0 @@
-/home/gabriel/Desktop/parallelSysAssignment/Multi-Threaded/CMakeFiles/rebuild_cache.dir
-/home/gabriel/Desktop/parallelSysAssignment/Multi-Threaded/CMakeFiles/edit_cache.dir
-/home/gabriel/Desktop/parallelSysAssignment/Multi-Threaded/CMakeFiles/sobel_filter_mt.dir

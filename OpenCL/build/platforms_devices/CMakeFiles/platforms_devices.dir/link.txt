@@ -1,1 +1,0 @@
-/usr/bin/c++  -std=c++14   CMakeFiles/platforms_devices.dir/platforms_devices.cpp.o  -o /home/gabriel/Desktop/parallelSysAssignment/OpenCL/bin/platforms_devices /usr/lib/x86_64-linux-gnu/libOpenCL.so 
