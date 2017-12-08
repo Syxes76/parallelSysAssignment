@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=c++14   CMakeFiles/simple_opencl.dir/simple_opencl.cpp.o  -o /home/gabriel/Desktop/parallelSysAssignment/OpenCL/bin/simple_opencl /usr/lib/x86_64-linux-gnu/libOpenCL.so 
