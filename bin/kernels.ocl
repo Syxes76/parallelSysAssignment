@@ -1,0 +1,65 @@
+__kernel void sobel_filter(
+    __global int * dst,
+    __global int * src,
+             int  rows,
+             int  cols,
+    __local  int * shared)
+
+{
+    int global_row = get_global_id(1);
+    int global_col = get_global_id(0);
+    int global_index = (global_row * cols) + global_col;
+    int src_length = rows * cols;
+
+    int local_index = get_local_id(0);
+    int local_length = get_local_size(0);
+
+    int local_memory_length = get_local_size(0) * 3 + 6;
+
+    int curr_global_index = (global_index - cols)-1;
+    bool in_bounds = curr_global_index >= 0 && curr_global_index < src_length;
+    shared[local_index] = in_bounds ? src[curr_global_index] : 0;
+    curr_global_index = (global_index - cols)+1;
+    in_bounds = curr_global_index >= 0 && curr_global_index < src_length;
+    shared[local_index+2] = in_bounds ? src[curr_global_index] : 0;
+    curr_global_index = global_index-1;
+    in_bounds = curr_global_index >= 0 && curr_global_index < src_length;
+    shared[local_index+local_length+2] = in_bounds ? src[curr_global_index] : 0;
+    curr_global_index = global_index+1;
+    in_bounds = curr_global_index >= 0 && curr_global_index < src_length;
+    shared[local_index+local_length+4] = in_bounds ? src[curr_global_index] : 0;
+    curr_global_index = (global_index + cols)-1;
+    for (int curr_local_index = 0; curr_local_index < 3; curr_local_index ++, curr_global_index ++) 
+    {
+        in_bounds = curr_global_index >= 0 && curr_global_index < src_length;
+        shared[local_index+(local_length+2)*2+curr_local_index] = in_bounds ? src[curr_global_index] : 0;
+    }
+    barrier(CLK_LOCAL_MEM_FENCE);
+
+    int gx, gy, sum;
+    if (global_index > cols && global_index < (rows*cols)-cols-1 && global_index % cols > 0 && global_index % cols != (cols-1))
+    {
+        gx = shared[local_index] + 2*shared[local_index+1] + shared[local_index+2] - shared[(local_length+2)*2+local_index] - 2*shared[(local_length+2)*2+local_index+1] - shared[(local_length+2)*2+local_index+2];
+
+        gy = shared[local_index] + 2*shared[(local_length+2)+local_index] + shared[(local_length+2)*2+local_index] - shared[local_index+2] - 2*shared[(local_length+2)+local_index+2] - shared[(local_length+2)*2+local_index+2];
+
+        sum = abs(gx) + abs(gy);
+
+        if (sum > 255)
+        {
+            dst[global_index] = 255;
+        }
+        else if (sum < 0)
+        {
+            dst[global_index] = 0;
+        }
+        else
+        {
+            dst[global_index] = sum;
+        }
+    }
+    else
+    {
+        dst[global_index] = 0;
+    }
+}
