@@ -16,13 +16,12 @@ __kernel void sobel_filter(
 
     int local_memory_length = get_local_size(0) * 3 + 6;
 
-    bool in_bounds;
     int curr_global_index = (global_index - cols)-1;
-    for (int curr_local_index = 0; curr_local_index < 3; curr_local_index ++, curr_global_index ++) 
-    {
-        in_bounds = curr_global_index >= 0 && curr_global_index < src_length;
-        shared[local_index+curr_local_index] = in_bounds ? src[curr_global_index] : 0;
-    }
+    bool in_bounds = curr_global_index >= 0 && curr_global_index < src_length;
+    shared[local_index] = in_bounds ? src[curr_global_index] : 0;
+    curr_global_index = (global_index - cols)+1;
+    in_bounds = curr_global_index >= 0 && curr_global_index < src_length;
+    shared[local_index+2] = in_bounds ? src[curr_global_index] : 0;
     curr_global_index = global_index-1;
     in_bounds = curr_global_index >= 0 && curr_global_index < src_length;
     shared[local_index+local_length+2] = in_bounds ? src[curr_global_index] : 0;
