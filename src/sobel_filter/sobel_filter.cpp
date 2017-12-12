@@ -72,7 +72,7 @@ int main(int argc, char** argv )
         x++;
     }
 
-    imwrite ("./output.jpg", dst);
+    imwrite ("./output_seq.jpg", dst);
 
     return 0;
 }
